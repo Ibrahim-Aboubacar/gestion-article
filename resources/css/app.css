@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* pour alpine Js */
+[x-cloak] { display: none !important; }
