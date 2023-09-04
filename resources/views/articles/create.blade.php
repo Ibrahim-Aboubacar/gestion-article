@@ -163,23 +163,23 @@
 									@enderror
 								</div>
 								{{-- uploaded images --}}
-								<div class="images mt-8 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
-									<template x-for="imageFile in uploadedImages">
-										<div :id="'image_' + imageFile.id"
-											class="relative w-full overflow-hidden rounded border border-gray-400 dark:border-gray-600">
-											<div class="image aspect-square w-full overflow-hidden">
-												<img :src="imageFile.path" class="h-full w-full object-cover" :alt="imageFile.name">
-											</div>
-											<div class="imfos w-full p-3 text-sm text-gray-800 dark:text-gray-300">
-												<p>Nom: <span clas="text-gray-950 dark:text-white" x-text="imageFile.name"></span></p>
-												<p>Taille: <span class="text-gray-950 dark:text-white"
-														x-text="(imageFile.size / 1024 > 1) ? (imageFile.size / 1024).toFixed(2) + 'Ko' : (imageFile.size / 1024 / 1024).toFixed(2) + 'Mo'"></span>
-												</p>
-												<div class="flex gap-3">
+								<div class="images mt-8 grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-4">
+									<template x-for="imageFile in uploadedImages"></template>
+									<div :id="'image_' + imageFile.id"
+										class="relative w-full overflow-hidden rounded border border-gray-400 dark:border-gray-600">
+										<div class="image aspect-square w-full overflow-hidden">
+											<img :src="imageFile.path" class="h-full w-full object-cover" :alt="imageFile.name">
+										</div>
+										<div class="imfos w-full p-3 text-sm text-gray-800 dark:text-gray-300">
+											<p>Nom: <span clas="text-gray-950 dark:text-white" x-text="imageFile.name"></span></p>
+											<p>Taille: <span class="text-gray-950 dark:text-white"
+													x-text="(imageFile.size / 1024 > 1) ? (imageFile.size / 1024).toFixed(2) + 'Ko' : (imageFile.size / 1024 / 1024).toFixed(2) + 'Mo'"></span>
+											</p>
+											<div class="flex gap-3">
 
-												</div>
 											</div>
 										</div>
+									</div>
 									</template>
 								</div>
 								<div x-show="notification.show" x-transition class="mx-auto mt-10 max-w-7xl sm:px-6 lg:px-8">
