@@ -153,8 +153,14 @@ class ArticleController extends Controller
         $SubCategories = (SubCategory::with('category')->select(['id', 'name', 'category_id'])->get())->map(function ($item) {
             return $item->only(['id', 'name', 'category', 'category_id']);
         });
+        if (str_contains($_SERVER['REQUEST_URI'], 'gestion-article/public')) {
+            $rootLocatoion = "/gestion-article/public/";
+        } else {
+            $rootLocatoion = '/';
+        }
         return view('articles.edit', [
             'imageLimit' => Article::IMAGE_LIMIT,
+            'rootLocatoion' => $rootLocatoion,
             'currentImageCount' => count($article->images),
             'article' => $article,
             'categories' => json_encode($categories),
@@ -231,7 +237,7 @@ class ArticleController extends Controller
     public function destroyImage(int $id)
     {
         // return ["request" => $request->all(), "id" => $id];
-        $image = Image::where("id", $id);
+        $image = Image::where("id", $id)->first();
         if ($image) {
             if ($image->deleteImageIfExist()) {
                 $image->delete();

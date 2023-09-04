@@ -1,5 +1,6 @@
 <x-app-layout xData='{
 			imageLimit : {{ $imageLimit }},
+			rootLocatoion : "{{ $rootLocatoion }}",
 			currentImageCount: {{ $currentImageCount }},
 			uploadedImages : [],
 			subCategories : {!! $sub_categories !!}, article: {!! $article !!}, categories: {!! $categories !!}, curentCategory: {{ $article->sub_category->category->id }}, setSubCategory: function (){
@@ -8,7 +9,7 @@
 				}, 100 );
 			},
 			notification : {show: false, type: "success", message : ""},
-			updateImageUrl: "/images/update/",
+			updateImageUrl: "images/update/",
 			modifyImage: function (id, e){
 				if(e.target.files.length){
 					formData = new FormData();
@@ -17,7 +18,7 @@
 					formData.append("_token", this.token);
 					formData.append("_method", "PATCH");
 					imageUrl = URL.createObjectURL(file);
-					fetch(location.origin+this.updateImageUrl+id, {
+					fetch(this.rootLocatoion+this.updateImageUrl+id, {
 						method : "POST",
 						headers: {
 							"X-CSRF-TOKEN": document.head.querySelector("meta[name=csrf-token]").content,
@@ -289,11 +290,11 @@
 							<div
 								x-data='{
 									token: "{{ csrf_token() }}",
-									deleteUrl: "/images/delete/",
+									deleteUrl: "images/delete/",
 									deleteImage: function (id, e) {
 										conf = confirm("Voulez-vous vraiment suprimer cette image ?")
 										if(conf){
-											fetch(location.origin+this.deleteUrl+id, {
+											fetch(this.rootLocatoion+this.deleteUrl+id, {
 												method : "DELETE",
 												headers: { 
 													"X-CSRF-TOKEN": document.head.querySelector("meta[name=csrf-token]").content,
