@@ -188,7 +188,7 @@
 									@enderror
 								</div>
 								{{-- uploaded images --}}
-								<div class="images mt-8 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+								<div class="images mt-8 grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-4">
 									<template x-for="imageFile in uploadedImages">
 										<div :id="'image_' + imageFile.id"
 											class="relative w-full overflow-hidden rounded border border-gray-400 dark:border-gray-600">
@@ -324,7 +324,7 @@
 										}
 									},
 								}'
-								class="images mt-8 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+								class="images mt-8 grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-4">
 								@foreach ($article->images as $image)
 									<div id="image_{{ $image->id }}"
 										class="relative flex w-full flex-col overflow-hidden rounded border border-gray-400 dark:border-gray-600">
