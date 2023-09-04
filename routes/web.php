@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update')->whereNumber('id');
     // Supression
     Route::delete('/articles/delete/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy')->whereNumber('id');
+
+    // Images
+    Route::delete('/images/delete/{id}', [ArticleController::class, 'destroyImage'])->name('images.destroy')->whereNumber('id');
+    Route::patch('/images/update/{image}', [ArticleController::class, 'updateImage'])->name('images.update')->whereNumber('image');
 
     // Route relative au profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
